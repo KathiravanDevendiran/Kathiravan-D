@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kathiravan Devendiran | Full-Stack Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a78bfa',
+                        secondary: '#ec4899',
+                        bgDark: '#07070a'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#07070a] text-white">
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[100] px-6 py-4 glass-nav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span class="text-2xl font-bold italic tracking-tighter">KD.</span>
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Work</a>
+                <a href="#contact" class="px-6 py-2 bg-white text-black rounded-full font-semibold glow-btn transition-transform hover:scale-105">Hire Me</a>
+            </div>
+            <button class="md:hidden">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
+            <div id="hero-content">
+                <div class="badge mb-6">
+                    <span class="dot"></span>
+                    Available for Internships
+                </div>
+                <h1 id="hero-title" class="text-6xl lg:text-8xl font-black mb-6 leading-tight">
+                    <span class="holographic-text">Kathiravan</span><br>
+                    <span>Devendiran</span>
+                </h1>
+                <p id="hero-desc" class="text-gray-400 text-xl md:text-2xl mb-12 max-w-lg leading-relaxed">
+                    B.E. Computer Science Student building innovative web solutions and exploring AI/ML with precision and clean code.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="cta-btn px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-opacity-80 transition-all">View Projects</a>
+                    <a href="#about" class="cta-btn px-8 py-4 glass border border-white/10 text-white font-bold rounded-2xl hover:bg-white/5 transition-all">About Me</a>
+                </div>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <div id="profile-img" class="relative group">
+                    <div class="absolute inset-0 bg-primary/20 blur-3xl group-hover:bg-primary/30 transition duration-500 rounded-full"></div>
+                    <div class="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden glass border-4 border-white/5">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Section -->
+     <section id="projects" class="py-32 px-6 reveal-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <div>
+                    <h2 class="text-4xl lg:text-6xl font-black mb-4 h-full">Featured <span class="text-primary italic">Works</span></h2>
+                    <p class="text-gray-400 text-lg">Clean, efficient, and production-ready architectures.</p>
+                </div>
+                <div class="text-sm text-gray-400 font-mono tracking-widest text-right">001 &mdash; 004</div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project Card -->
+                <div class="card glass cursor-pointer transition-all duration-300">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-8 bg-gray-900">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30"></div>
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format" alt="Project" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold mb-3">Aruvili Learning Platform</h3>
+                        <p class="text-gray-400 mb-6 line-clamp-2">A high-fidelity learning management system featuring interactive dashboards and student-centric pedagogy.</p>
+                        <div class="flex gap-2 mb-8">
+                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Next.js</span>
+                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Three.js</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="external-link" size="18"></i> Live View</a>
+                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="github" size="18"></i> Github</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card glass cursor-pointer transition-all duration-300">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-8 bg-gray-900">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-secondary/30 to-primary/30"></div>
+                        <img src="https://images.unsplash.com/photo-1454165833767-027ffea70288?q=80&w=600&auto=format" alt="Project" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold mb-3">AI-Powered Forecasting</h3>
+                        <p class="text-gray-400 mb-6 line-clamp-2">Intelligent data visualization and yield forecasting for agricultural platforms using advanced ML APIs.</p>
+                        <div class="flex gap-2 mb-8">
+                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Python</span>
+                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">React</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="external-link" size="18"></i> Live View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+
+     <!-- Skills / Contact Section Condensed -->
+     <section id="contact" class="py-20 px-6 reveal-section">
+        <div class="max-w-3xl mx-auto glass p-12 text-center">
+            <h4 class="text-3xl font-black mb-6 italic">Let's build something <span class="text-primary italic">exceptional</span> together.</h4>
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <a href="mailto:contact@kathiravan.com" class="px-10 py-5 bg-white text-black font-bold rounded-2xl glow-btn">Start a Project</a>
+                <a href="#" class="px-10 py-5 glass border border-white/10 font-bold rounded-2xl hover:bg-white/5 transition-all">Download CV</a>
+            </div>
+            <div class="flex justify-center gap-8 mt-12 text-gray-400">
+                <a href="#" class="hover:text-primary transition"><i data-lucide="github"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-lucide="linkedin"></i></a>
+                <a href="#" class="hover:text-primary transition"><i data-lucide="twitter"></i></a>
+            </div>
+        </div>
+     </section>
+
+     <footer class="py-8 text-center text-gray-500 text-xs uppercase tracking-widest font-mono">
+        &copy; 2024 Kathiravan Devendiran. Built with Pure Magic & JS.
+     </footer>
+
+    <script src="assets/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
