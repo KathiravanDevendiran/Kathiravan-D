@@ -4,157 +4,682 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kathiravan Devendiran | Full-Stack Developer</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/style.css">
+    <meta name="description" content="Portfolio of Kathiravan Devendiran, a Computer Science student and Full-Stack Developer building innovative web solutions and AI applications.">
     
-    <!-- Scripts -->
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons & Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
+    <!-- Tailwind CSS Play CDN Enhanced -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#a78bfa',
-                        secondary: '#ec4899',
-                        bgDark: '#07070a'
-                    }
+                        primary: '#2dd4bf',
+                        secondary: '#3b82f6',
+                        dark: '#07070a',
+                        'primary-glow': 'rgba(45, 212, 191, 0.3)',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
                 }
             }
         }
     </script>
-</head>
-<body class="bg-[#07070a] text-white">
-    <canvas id="bg-canvas"></canvas>
 
+    <!-- Local Styles -->
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body class="bg-transparent text-white overflow-x-hidden selection:bg-primary/20">
+    <!-- Background Animation Canvas (Anchored for Visibility) -->
+    <canvas id="bg-canvas" style="position: fixed; top: 0; left:0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[100] px-6 py-4 glass-nav">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span class="text-2xl font-bold italic tracking-tighter">KD.</span>
-            <div class="hidden md:flex gap-8 items-center text-sm font-medium">
-                <a href="#hero" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Work</a>
-                <a href="#contact" class="px-6 py-2 bg-white text-black rounded-full font-semibold glow-btn transition-transform hover:scale-105">Hire Me</a>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo text-2xl font-bold tracking-tighter logo">KD<span class="text-primary">.</span></a>
+            <ul class="nav-links hidden md:flex gap-8 items-center font-medium list-none text-sm tracking-wide">
+                <li><a href="#hero" class="nav-link hover:text-primary transition-colors">Home</a></li>
+                <li><a href="#about" class="nav-link hover:text-primary transition-colors">About</a></li>
+                <li><a href="#certifications" class="nav-link hover:text-primary transition-colors">Honors</a></li>
+                <li><a href="#skills" class="nav-link hover:text-primary transition-colors">Expertise</a></li>
+                <li><a href="#experience" class="nav-link hover:text-primary transition-colors">Journey</a></li>
+                <li><a href="#projects" class="nav-link hover:text-primary transition-colors">Works</a></li>
+            </ul>
+            <div class="nav-cta hidden md:flex items-center gap-4">
+                <a href="#contact" class="glow-btn px-6 py-2">Let's Talk</a>
             </div>
-            <button class="md:hidden">
-                <i data-lucide="menu"></i>
-            </button>
+            <button class="md:hidden text-white ml-auto" id="mobile-toggle"><i data-lucide="menu"></i></button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
-            <div id="hero-content">
-                <div class="badge mb-6">
-                    <span class="dot"></span>
-                    Available for Internships
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="hero" class="hero min-h-screen flex items-center pt-24 overflow-hidden">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="hero-content scroll-reveal">
+                    <div class="availability-badge">
+                        <div class="pulse-dot"></div>
+                        <span>AVAILABLE FOR INTERNSHIPS</span>
+                    </div>
+                    <h1 class="hero-title holographic-text leading-[0.95]">
+                        Kathiravan<br>Devendiran
+                    </h1>
+                    <p class="hero-desc mb-10 text-xl max-w-lg font-medium leading-relaxed" style="color: rgba(226,232,240,0.9);">
+                        Computer Science Student <span class="text-primary font-bold">@DSCE</span> building innovative web solutions and exploring <span class="text-secondary font-bold">AI</span> with precision. Currently seeking <span class="text-white font-bold">2026 internship</span> opportunities.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="glow-btn">
+                            View Projects
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact" class="px-8 py-3 rounded-full border border-white/20 hover:border-primary hover:bg-white/5 transition-all text-sm font-bold uppercase tracking-widest">
+                            Connect
+                        </a>
+                    </div>
                 </div>
-                <h1 id="hero-title" class="text-6xl lg:text-8xl font-black mb-6 leading-tight">
-                    <span class="holographic-text">Kathiravan</span><br>
-                    <span>Devendiran</span>
-                </h1>
-                <p id="hero-desc" class="text-gray-400 text-xl md:text-2xl mb-12 max-w-lg leading-relaxed">
-                    B.E. Computer Science Student building innovative web solutions and exploring AI/ML with precision and clean code.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="cta-btn px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-opacity-80 transition-all">View Projects</a>
-                    <a href="#about" class="cta-btn px-8 py-4 glass border border-white/10 text-white font-bold rounded-2xl hover:bg-white/5 transition-all">About Me</a>
+                <!-- Hero Panel (Restored Profile Card) -->
+                <div class="hero-panel scroll-reveal md:block hidden">
+                    <div class="glass-card p-12 relative overflow-hidden group">
+                        <div class="flex justify-between items-center mb-12">
+                            <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest">Kathiravan Devendiran</span>
+                            <div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_var(--primary-glow)]"></div>
+                        </div>
+                        <div class="mb-16">
+                            <span class="text-[10px] font-bold text-primary uppercase mb-2 block">CURRENTLY</span>
+                            <h3 class="text-2xl font-bold leading-tight uppercase typing-roles"></h3>
+                        </div>
+                        <div class="flex justify-end items-end relative h-24">
+                            <div class="absolute right-0 bottom-0 w-32 h-32 border border-primary/20 rounded-full animate-pulse"></div>
+                            <img src="https://lh3.googleusercontent.com/d/1YnxfSJ09J-aR60AIP81-h_-62VTq7lJh" alt="Profile" class="w-24 h-24 rounded-full border-4 border-white/10 relative z-10 hover:grayscale-0 transition-all duration-700 shadow-2xl">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="flex justify-center md:justify-end">
-                <div id="profile-img" class="relative group">
-                    <div class="absolute inset-0 bg-primary/20 blur-3xl group-hover:bg-primary/30 transition duration-500 rounded-full"></div>
-                    <div class="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden glass border-4 border-white/5">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover">
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container mx-auto px-6">
+                <div class="mb-16 scroll-reveal">
+                    <span class="section-tag">IDENTITY</span>
+                    <h2 class="section-title">THE<br><span class="text-primary">DEVELOPER</span></h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger scroll-reveal">
+                    <div class="glass-card">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-8 border border-white/5">
+                            <i data-lucide="user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 uppercase">WHO I AM</h3>
+                        <p class="text-slate-400 font-medium leading-relaxed italic">"Mapping clean code to high-impact AI."</p>
+                        <p class="text-slate-500 text-sm mt-4 font-medium leading-relaxed">A B.E. Computer Science student at DSCE with an unyielding passion for clean code and scalable architecture. I thrive at the logic-creativity intersection.</p>
                     </div>
+                    <div class="glass-card">
+                        <div class="w-12 h-12 bg-secondary/10 text-secondary rounded-xl flex items-center justify-center mb-8 border border-white/5">
+                            <i data-lucide="code-2"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 uppercase">WHAT I DO</h3>
+                        <p class="text-slate-400 font-medium leading-relaxed">I architect full-stack environments using the MERN/PERN stack, crafting seamless digital experiences from intuitive frontends to optimized databases.</p>
+                    </div>
+                    <div class="glass-card">
+                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-8 border border-white/5">
+                            <i data-lucide="rocket"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 uppercase">CURRENT FOCUS</h3>
+                        <p class="text-slate-400 font-medium leading-relaxed">Deep-diving into Generative AI integration and fine-tuning the Aruvili LMS platform. Seeking 2026 internship opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Honors & Certifications (Full Restore) -->
+        <section id="certifications" class="certifications">
+            <div class="container mx-auto px-6">
+                <div class="mb-16 scroll-reveal">
+                    <span class="section-tag">VERIFICATION TIER: INDUSTRIAL</span>
+                    <h2 class="section-title">HONORS &<br><span class="text-primary">CERTIFICATIONS</span></h2>
+                    <p class="text-slate-500 mt-4 text-sm font-medium">Click "PREVIEW" to view the certificate directly on this site.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger scroll-reveal">
+                    <!-- AI Certificate -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="brain-circuit" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">INDUSTRIAL</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">ADVANCED MODELS</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">ARTIFICIAL INTELLIGENCE</h3>
+                            <p class="text-slate-400 text-sm font-medium">Neural Networks & ML Deployment</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1keJb32TU6Ul9eXoUacz6DZ9C31VsCyQG/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1keJb32TU6Ul9eXoUacz6DZ9C31VsCyQG/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                    <!-- Cyber Security Certificate -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="shield-check" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">INDUSTRIAL</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">CYBER DEFENSE</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">CYBER SECURITY</h3>
+                            <p class="text-slate-400 text-sm font-medium">Network Security & Threat Analysis</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1cxhBgLglLcV6QEc7ANOSNxaIcN8CxjfD/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1cxhBgLglLcV6QEc7ANOSNxaIcN8CxjfD/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                    <!-- IoT Certificate -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="cpu" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">INDUSTRIAL</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">EMBEDDED SYSTEMS</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">IOT ARCHITECTURE</h3>
+                            <p class="text-slate-400 text-sm font-medium">Smart Home & Industrial IoT Modules</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1x4cTeg0G8J9g3ilrzW0tdngr_IIt0CZe/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1x4cTeg0G8J9g3ilrzW0tdngr_IIt0CZe/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                    <!-- Web Development Certificate -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="layout" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">INDUSTRIAL</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">MODERN FRONTEND</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">WEB DEVELOPMENT</h3>
+                            <p class="text-slate-400 text-sm font-medium">Full-Stack Architectures & React Mastery</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1naVW7gOEcDuIGMZoj8KGvaZja6wEVKQx/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1naVW7gOEcDuIGMZoj8KGvaZja6wEVKQx/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                    <!-- Oneyes Infotech Certificate -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="award" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">INDUSTRIAL</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">EXCELLENCE</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">ONEYES INFOTECH</h3>
+                            <p class="text-slate-400 text-sm font-medium">Exceptional Performance in Software Development</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1PE1KXTThFoN70sTyAm66iGCyFa_BgpCx/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1PE1KXTThFoN70sTyAm66iGCyFa_BgpCx/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                    <!-- Thozhil Achievement -->
+                    <div class="glass-card p-8 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex justify-between items-center mb-8">
+                                <i data-lucide="trophy" class="text-primary"></i>
+                                <span class="text-[9px] font-extrabold text-slate-500 border border-white/10 px-2 py-1 rounded">VICTORY</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-2 block">NATIONAL FINALIST</span>
+                            <h3 class="text-xl font-bold mb-2 uppercase">THOZHIL ACHIEVEMENT</h3>
+                            <p class="text-slate-400 text-sm font-medium">Project Excellence at National Hackathon</p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8">
+                            <button onclick="previewCert('https://drive.google.com/file/d/1Pb2dc4AlTGo-bY9A_2jiWjDpZik1V4GB/view?usp=sharing')" class="text-[10px] font-bold text-primary group-hover:text-secondary transition-all uppercase flex items-center gap-1">PREVIEW <i data-lucide="eye" class="w-3 h-3"></i></button>
+                            <a href="https://drive.google.com/file/d/1Pb2dc4AlTGo-bY9A_2jiWjDpZik1V4GB/view?usp=sharing" target="_blank" class="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">VIEW LINK <i data-lucide="external-link" class="w-3 h-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Expertise -->
+        <section id="skills" class="skills relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="mb-16 scroll-reveal">
+                    <span class="section-tag">ENGINEERING TIER</span>
+                    <h2 class="section-title">TECHNICAL<br><span class="text-secondary">EXPERTISE</span></h2>
+                </div>
+
+                <div class="glass-card p-10 scroll-reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                        <div class="skill-group">
+                            <span class="skill-group-label" style="color:var(--primary);"><i data-lucide="code" class="w-3.5 h-3.5"></i> Languages</span>
+                            <div class="skill-pills">
+                                <span class="skill-pill primary">JavaScript</span>
+                                <span class="skill-pill primary">Python</span>
+                                <span class="skill-pill primary">SQL</span>
+                                <span class="skill-pill primary">Java</span>
+                                <span class="skill-pill primary">C++</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <span class="skill-group-label" style="color:var(--secondary);"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Frontend</span>
+                            <div class="skill-pills">
+                                <span class="skill-pill secondary">React.js</span>
+                                <span class="skill-pill secondary">Next.js</span>
+                                <span class="skill-pill secondary">Tailwind CSS</span>
+                                <span class="skill-pill secondary">Three.js</span>
+                                <span class="skill-pill secondary">Framer Motion</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <span class="skill-group-label" style="color:var(--primary);"><i data-lucide="server" class="w-3.5 h-3.5"></i> Backend</span>
+                            <div class="skill-pills">
+                                <span class="skill-pill primary">Node.js</span>
+                                <span class="skill-pill primary">Express.js</span>
+                                <span class="skill-pill primary">MySQL</span>
+                                <span class="skill-pill primary">Firebase</span>
+                                <span class="skill-pill primary">API Design</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <span class="skill-group-label" style="color:var(--secondary);"><i data-lucide="wrench" class="w-3.5 h-3.5"></i> Tools</span>
+                            <div class="skill-pills">
+                                <span class="skill-pill secondary">Git / GitHub</span>
+                                <span class="skill-pill secondary">VS Code</span>
+                                <span class="skill-pill secondary">Vercel</span>
+                                <span class="skill-pill secondary">Docker</span>
+                                <span class="skill-pill secondary">Figma</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Journey / Roadmap Milestones -->
+        <section id="experience" class="experience">
+            <div class="container mx-auto px-6">
+                <div class="mb-20 scroll-reveal">
+                    <span class="section-tag">CHRONICLE: 2024 - PRESENT</span>
+                    <h2 class="section-title">THE<br><span class="text-secondary">MILESTONES</span></h2>
+                </div>
+
+                <div class="roadmap">
+
+                    <!-- Milestone 1: Academic -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35);">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-secondary"></i>
+                            </div>
+                            <div class="roadmap-line"></div>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="roadmap-badge" style="background: rgba(59,130,246,0.1); color: var(--secondary); border-color: rgba(59,130,246,0.25);">2024 – 2028</div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">DHANALAKSHMI SRINIVASAN COLLEGE</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">Academic Journey</h3>
+                            <p class="text-slate-400 font-medium">B.E. in Computer Science and Engineering</p>
+                            <p class="inline-flex items-center gap-2 mt-4 text-sm font-bold text-white bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
+                                <i data-lucide="star" class="w-4 h-4 text-secondary"></i>
+                                CGPA: 8.73 / 10.00 &nbsp;|&nbsp; Coimbatore, India
+                            </p>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">CSE</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">DSCE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2: Corizo Intern -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.35);">
+                                <i data-lucide="briefcase" class="w-5 h-5 text-primary"></i>
+                            </div>
+                            <div class="roadmap-line"></div>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="roadmap-badge" style="background: rgba(45,212,191,0.1); color: var(--primary); border-color: rgba(45,212,191,0.25);">2024 – 2025</div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">CORIZO INDUSTRY INTERNSHIP</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">SDE Intern</h3>
+                            <p class="text-slate-400 font-medium leading-relaxed">Collaborated on enterprise-level web modules and refined AI integration workflows using React and Node.js.</p>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">React</span>
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3: Oneyes Infotech -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35);">
+                                <i data-lucide="utensils" class="w-5 h-5 text-secondary"></i>
+                            </div>
+                            <div class="roadmap-line"></div>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="roadmap-badge" style="background: rgba(59,130,246,0.1); color: var(--secondary); border-color: rgba(59,130,246,0.25);">2024 – 2026</div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">ONEYES INFOTECH SOLUTIONS</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">Software Developer Intern</h3>
+                            <p class="text-slate-400 font-medium leading-relaxed">Built a full-featured Restaurant POS System — handling order management, billing, table tracking, and real-time kitchen updates for seamless restaurant operations.</p>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">POS System</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">React</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">Node.js</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3: Aruvili -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35);">
+                                <i data-lucide="rocket" class="w-5 h-5 text-secondary"></i>
+                            </div>
+                            <div class="roadmap-line"></div>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="roadmap-badge" style="background: rgba(59,130,246,0.1); color: var(--secondary); border-color: rgba(59,130,246,0.25);">2024 – PRESENT</div>
+                                <span class="text-[9px] font-extrabold text-emerald-400 border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 rounded-full uppercase tracking-widest">● LIVE</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">ARUVILI LEARNING PLATFORM</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">Co-Founder & Core Developer</h3>
+                            <p class="text-slate-400 font-medium leading-relaxed mb-4">Leading the architecture of a high-impact LMS platform for thousands of learners, focusing on performance and scalability.</p>
+                            <a href="https://aruvili.com" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-primary transition-colors">Launch Platform <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">Next.js</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">Node.js</span>
+                                <span class="roadmap-tag" style="color:var(--secondary); border-color:rgba(59,130,246,0.25);">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4: Agrow Agency -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.35);">
+                                <i data-lucide="building-2" class="w-5 h-5 text-primary"></i>
+                            </div>
+                            <div class="roadmap-line"></div>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="flex items-center gap-3 mb-1">
+                                <div class="roadmap-badge" style="background: rgba(45,212,191,0.1); color: var(--primary); border-color: rgba(45,212,191,0.25);">2025 – PRESENT</div>
+                                <span class="text-[9px] font-extrabold text-emerald-400 border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 rounded-full uppercase tracking-widest">● LIVE</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">FREELANCING AGENCY</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">Agrow Agency — Founder</h3>
+                            <p class="text-slate-400 font-medium leading-relaxed mb-4">Initiated a freelancing agency to deliver client projects — from web apps to AI-powered solutions. Building real-world products for real clients.</p>
+                            <a href="https://agrow-agency.vercel.app" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors">Visit Agency <i data-lucide="external-link" class="w-4 h-4"></i></a>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">Freelance</span>
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">Full-Stack</span>
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 5: National Hackathon -->
+                    <div class="roadmap-item scroll-reveal">
+                        <div class="roadmap-node">
+                            <div class="roadmap-icon" style="background: rgba(45,212,191,0.12); border-color: rgba(45,212,191,0.35);">
+                                <i data-lucide="trophy" class="w-5 h-5 text-primary"></i>
+                            </div>
+                            <!-- no line on last -->
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <div class="roadmap-badge" style="background: rgba(45,212,191,0.1); color: var(--primary); border-color: rgba(45,212,191,0.25);">2026</div>
+                            <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">AGROW LENS AI PROJECT</span>
+                            <h3 class="text-xl font-bold uppercase mt-2 mb-4">National Hackathon & Research</h3>
+                            <ul class="space-y-2">
+                                <li class="roadmap-point"><span class="roadmap-dot" style="background:var(--primary);"></span>Developed AI models for agricultural yield forecasting.</li>
+                                <li class="roadmap-point"><span class="roadmap-dot" style="background:var(--primary);"></span>Secured top ranking in National Level Research Exhibition.</li>
+                                <li class="roadmap-point"><span class="roadmap-dot" style="background:var(--primary);"></span>Integrated real-time weather and soil data APIs.</li>
+                            </ul>
+                            <div class="roadmap-tags">
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">Python</span>
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">ML</span>
+                                <span class="roadmap-tag" style="color:var(--primary); border-color:rgba(45,212,191,0.25);">AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section (Full Restore) -->
+        <section id="projects" class="projects">
+            <div class="container mx-auto px-6">
+                <div class="mb-16 scroll-reveal">
+                    <span class="section-tag">WORKS: FEATURED PROJECTS</span>
+                    <h2 class="section-title">ENGINEERING<br><span class="holographic-text">WORKS</span></h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal-stagger scroll-reveal">
+                    <!-- Project 1 -->
+                    <div class="glass-card overflow-hidden group p-0">
+                        <div class="relative h-64 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent z-10 opacity-60"></div>
+                            <img src="https://lh3.googleusercontent.com/d/1xE_FYG_QNzY0senhMqMHtdL_hxOcrgj6" alt="Aruvili Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-2xl font-bold mb-4 uppercase">ARUVILI PLATFORM</h3>
+                            <p class="text-slate-400 mb-8 font-medium">A high-performance Learning Management System designed for scalability and user engagement. Architected with advanced caching and optimized schemas.</p>
+                            <div class="flex gap-4">
+                                <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-primary font-extrabold tracking-widest">NEXT.JS</span>
+                                <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-secondary font-extrabold tracking-widest">NODE.JS</span>
+                            </div>
+                            <div class="flex gap-6 mt-10">
+                                <a href="https://aruvili.com" target="_blank" class="text-white hover:text-primary transition-all"><i data-lucide="external-link"></i></a>
+                                <a href="#" target="_blank" class="text-white hover:text-primary transition-all"><i data-lucide="github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="glass-card overflow-hidden group p-0">
+                        <div class="relative h-64 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent z-10 opacity-60"></div>
+                            <img src="https://lh3.googleusercontent.com/d/1-cOGwu0In4naKzc4Vz2PLMi0m4VHODZ9" alt="Agrow Lens AI" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-2xl font-bold mb-4 uppercase">Agrow Lens AI</h3>
+                            <p class="text-slate-400 mb-8 font-medium">Agricultural intelligence suite using machine learning for predictive crop health analysis and yield forecasting based on soil-weather data.</p>
+                            <div class="flex gap-4">
+                                <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-primary font-extrabold tracking-widest">PYTHON</span>
+                                <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-secondary font-extrabold tracking-widest">ML APIS</span>
+                            </div>
+                            <div class="flex gap-6 mt-10">
+                                <a href="#" target="_blank" class="text-white hover:text-primary transition-all"><i data-lucide="external-link"></i></a>
+                                <a href="#" target="_blank" class="text-white hover:text-primary transition-all"><i data-lucide="github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="glass-card overflow-hidden group p-0 md:col-span-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2">
+                            <div class="relative h-64 md:h-auto overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-dark to-transparent z-10 opacity-70"></div>
+                                <div class="w-full h-full min-h-[260px] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(45,212,191,0.08), rgba(59,130,246,0.08));">
+                                    <i data-lucide="building-2" class="w-24 h-24 text-primary opacity-20"></i>
+                                </div>
+                            </div>
+                            <div class="p-10">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <h3 class="text-2xl font-bold uppercase">AGROW AGENCY</h3>
+                                    <span class="text-[9px] font-extrabold text-emerald-400 border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 rounded-full uppercase tracking-widest">● LIVE</span>
+                                </div>
+                                <p class="text-slate-400 mb-8 font-medium">A freelancing agency built to deliver client projects — from full-stack web apps to AI-powered solutions. Bridging ideas to production-ready products.</p>
+                                <div class="flex flex-wrap gap-3 mb-8">
+                                    <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-primary font-extrabold tracking-widest">REACT</span>
+                                    <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-secondary font-extrabold tracking-widest">NODE.JS</span>
+                                    <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded text-primary font-extrabold tracking-widest">AI</span>
+                                </div>
+                                <div class="flex gap-6">
+                                    <a href="https://agrow-agency.vercel.app" target="_blank" class="text-white hover:text-primary transition-all"><i data-lucide="external-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact pt-20 pb-32">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="scroll-reveal">
+                    <span class="section-tag">COMMUNICATION</span>
+                    <h2 class="text-4xl md:text-7xl font-extrabold uppercase mb-8 leading-none">LET'S<br><span class="text-primary">CONNECT</span></h2>
+                    <p class="text-lg mb-12 font-medium max-w-md" style="color: rgba(226,232,240,0.85);">I'm currently seeking a <span class="text-primary font-bold">2026 internship</span> opportunity. My inbox is always open for <span class="text-white font-bold">bold ideas</span>.</p>
+                    <div class="space-y-10">
+                        <a href="mailto:kathiravanh1919@gmail.com" class="block group">
+                            <span class="text-[10px] font-bold text-primary tracking-[0.2em] mb-3 block uppercase">SEND AN EMAIL</span>
+                            <span class="text-xl md:text-2xl font-extrabold text-white border-b-2 border-white/10 group-hover:border-primary transition-all pb-2 inline-block break-all">kathiravanh1919@gmail.com</span>
+                        </a>
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-400 tracking-[0.2em] mb-4 block uppercase">FIND ME ON</span>
+                            <div class="flex gap-4">
+                                <a href="https://linkedin.com/in/kathiravan-devendiran" target="_blank" class="w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-dark transition-all text-white">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/kathiravan-dev" target="_blank" class="w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-dark transition-all text-white">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://instagram.com/kathir_31_" target="_blank" class="w-14 h-14 rounded-2xl border border-white/15 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-dark transition-all text-white">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12.017 0C8.396 0 7.996.014 6.79.067 5.584.12 4.775.302 4.082.566c-.693.264-1.282.65-1.87 1.238C1.624 2.392 1.238 2.981.974 3.674.71 4.367.528 5.176.475 6.382c-.047 1.206-.067 1.606-.067 4.227s.02 3.021.067 4.227c.053 1.206.235 2.015.499 2.708.264.693.65 1.282 1.238 1.87.588.588 1.177 1.024 1.87 1.288.693.264 1.502.446 2.708.499 1.206.053 1.606.067 4.227.067s3.021-.014 4.227-.067c1.206-.053 2.015-.235 2.708-.499.693-.264 1.282-.7 1.87-1.288.588-.588 1.024-1.177 1.288-1.87.264-.693.446-1.502.499-2.708.053-1.206.067-1.606.067-4.227s-.014-3.021-.067-4.227c-.053-1.206-.235-2.015-.499-2.708-.264-.693-.7-1.282-1.288-1.87-.588-.588-1.177-1.024-1.87-1.238-.693-.264-1.502-.446-2.708-.499C15.023.014 14.623 0 12.017 0zm0 1.802c3.532 0 3.952.013 5.344.076 1.304.059 2.006.278 2.47.462.602.238 1.03.524 1.48.974.45.45.736.878.974 1.48.184.464.403 1.166.462 2.47.063 1.392.076 1.812.076 5.344s-.013 3.952-.076 5.344c-.059 1.304-.278 2.006-.462 2.47-.238.602-.524 1.03-.974 1.48-.45.45-.878.736-1.48.974-.464.184-1.166.403-2.47.462-1.392.063-1.812.076-5.344.076s-3.952-.013-5.344-.076c-1.304-.059-2.006-.278-2.47-.462-.602-.238-1.03-.524-1.48-.974-.45-.45-.736-.878-.974-1.48-.184-.464-.403-1.166-.462-2.47-.063-1.392-.076-1.812-.076-5.344s.013-3.952.076-5.344c.059-1.304.278-2.006.462-2.47.238-.602.524-1.03.974-1.48.45-.45.878-.736 1.48-.974.464-.184 1.166-.403 2.47-.462 1.392-.063 1.812-.076 5.344-.076zm0 11.918c-3.74 0-6.776-3.036-6.776-6.776s3.036-6.776 6.776-6.776 6.776 3.036 6.776 6.776-3.036 6.776-6.776 6.776zm0-11.23c-3.086 0-5.59 2.504-5.59 5.59s2.504 5.59 5.59 5.59 5.59-2.504 5.59-5.59-2.504-5.59-5.59-5.59zm6.406-.732c-.907 0-1.642.735-1.642 1.642s.735 1.642 1.642 1.642 1.642-.735 1.642-1.642-.735-1.642-1.642-1.642z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-reveal">
+                    <div class="glass-card p-10 md:p-12" style="border-color: rgba(45,212,191,0.15);">
+                        <h3 class="text-2xl font-bold mb-2 uppercase tracking-tight">DISPATCH MESSAGE</h3>
+                        <p class="text-slate-400 text-sm mb-8 font-medium">Fill the form and I'll get back to you within 24 hours.</p>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-extrabold text-primary uppercase tracking-widest">Your Name</label>
+                                    <input type="text" class="w-full bg-white/5 border border-white/15 rounded-xl p-4 outline-none focus:border-primary transition-all font-medium text-white placeholder-slate-600" placeholder="John Doe">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-extrabold text-primary uppercase tracking-widest">Email Address</label>
+                                    <input type="email" class="w-full bg-white/5 border border-white/15 rounded-xl p-4 outline-none focus:border-primary transition-all font-medium text-white placeholder-slate-600" placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-extrabold text-primary uppercase tracking-widest">Message</label>
+                                <textarea rows="5" class="w-full bg-white/5 border border-white/15 rounded-xl p-4 outline-none focus:border-primary transition-all resize-none font-medium text-white placeholder-slate-600" placeholder="Tell me about your vision..."></textarea>
+                            </div>
+                            <button type="submit" class="glow-btn w-full justify-center py-4 text-sm uppercase">
+                                SEND MESSAGE
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center text-slate-500 text-[10px] font-extrabold uppercase tracking-[0.4em]">
+            © 2026 KATHIRAVAN DEVENDIRAN | PORTFOLIO REDEFINED
+        </div>
+    </footer>
+
+    <!-- Certificate Preview Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-[5000] hidden flex items-center justify-center p-4 md:p-10 pointer-events-none transition-all duration-300">
+        <div class="absolute inset-0 bg-[#07070a]/90 backdrop-blur-2xl opacity-0 transition-opacity duration-300" id="modal-overlay"></div>
+        <div class="relative w-full max-w-5xl h-full max-h-[90vh] glass-card overflow-hidden translate-y-10 scale-95 opacity-0 transition-all duration-300 pointer-events-auto shadow-2xl border-white/10" id="modal-content">
+            <div class="absolute top-4 right-4 z-10 flex gap-2">
+                <a id="modal-external" href="#" target="_blank" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-all text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                <button id="close-modal" class="w-10 h-10 bg-white/5 border border-white/10 rounded-full flex items-center justify-center hover:bg-secondary transition-all text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="w-full h-full bg-white/5 flex items-center justify-center" id="iframe-container">
+                <iframe id="cert-iframe" class="w-full h-full border-none opacity-0 transition-opacity duration-700" src=""></iframe>
+                <div id="iframe-loader" class="absolute flex flex-col items-center gap-4 text-primary">
+                    <i data-lucide="loader-2" class="w-10 h-10 animate-spin"></i>
+                    <span class="text-[10px] font-bold tracking-widest uppercase">Loading Certificate...</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Project Section -->
-     <section id="projects" class="py-32 px-6 reveal-section">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                <div>
-                    <h2 class="text-4xl lg:text-6xl font-black mb-4 h-full">Featured <span class="text-primary italic">Works</span></h2>
-                    <p class="text-gray-400 text-lg">Clean, efficient, and production-ready architectures.</p>
+    <!-- Dex AI Agent -->
+    <div class="fixed bottom-8 right-8 z-[4000]" id="dex-widget">
+        <div class="dex-chat-window hidden glass-card w-[340px] md:w-[400px] mb-6 overflow-hidden flex flex-col border-white/10 shadow-3xl" style="height: 520px; border-color: rgba(45,212,191,0.2);" id="dex-window">
+            <div class="p-5 flex justify-between items-center border-b" style="background: rgba(7,7,10,0.97); border-color: rgba(45,212,191,0.15);">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center">
+                        <i data-lucide="bot" class="w-4 h-4 text-primary"></i>
+                    </div>
+                    <div>
+                        <span class="text-[12px] font-extrabold text-white block uppercase tracking-wider">DEX ASSISTANT</span>
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#10b981] animate-pulse"></div>
+                            <span class="text-[9px] font-bold text-emerald-400 uppercase">ONLINE</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-sm text-gray-400 font-mono tracking-widest text-right">001 &mdash; 004</div>
+                <button class="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-all" id="dex-close"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project Card -->
-                <div class="card glass cursor-pointer transition-all duration-300">
-                    <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-8 bg-gray-900">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-secondary/30"></div>
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format" alt="Project" class="w-full h-full object-cover opacity-60">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-2xl font-bold mb-3">Aruvili Learning Platform</h3>
-                        <p class="text-gray-400 mb-6 line-clamp-2">A high-fidelity learning management system featuring interactive dashboards and student-centric pedagogy.</p>
-                        <div class="flex gap-2 mb-8">
-                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Next.js</span>
-                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Three.js</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="external-link" size="18"></i> Live View</a>
-                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="github" size="18"></i> Github</a>
-                        </div>
-                    </div>
+            <div class="flex-1 p-5 overflow-y-auto font-medium text-sm" style="background: rgba(7,7,10,0.6); color: rgba(226,232,240,0.9);" id="dex-messages">
+                <div class="bg-white/5 border border-white/10 p-4 rounded-2xl rounded-tl-none leading-relaxed text-slate-200">
+                    Hi! I'm <span class="text-primary font-bold">Dex</span>, Kathiravan's AI twin. Ask me anything about his <span class="text-white font-semibold">skills</span>, <span class="text-white font-semibold">projects</span>, or <span class="text-white font-semibold">journey</span>! 🚀
                 </div>
-
-                <div class="card glass cursor-pointer transition-all duration-300">
-                    <div class="relative w-full aspect-video rounded-xl overflow-hidden mb-8 bg-gray-900">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-secondary/30 to-primary/30"></div>
-                        <img src="https://images.unsplash.com/photo-1454165833767-027ffea70288?q=80&w=600&auto=format" alt="Project" class="w-full h-full object-cover opacity-60">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-2xl font-bold mb-3">AI-Powered Forecasting</h3>
-                        <p class="text-gray-400 mb-6 line-clamp-2">Intelligent data visualization and yield forecasting for agricultural platforms using advanced ML APIs.</p>
-                        <div class="flex gap-2 mb-8">
-                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">Python</span>
-                            <span class="px-3 py-1 bg-white/5 text-xs rounded-full border border-white/10 uppercase font-bold tracking-wider">React</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-sm font-bold flex items-center gap-2 hover:text-primary transition"><i data-lucide="external-link" size="18"></i> Live View</a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="p-4 flex gap-3" style="background: rgba(7,7,10,0.97); border-top: 1px solid rgba(45,212,191,0.12);">
+                <input type="text" id="dex-input" class="flex-1 rounded-xl px-4 py-3 text-sm outline-none font-medium text-white" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);" placeholder="Ask about Kathiravan...">
+                <button id="dex-send-btn" class="w-11 h-11 bg-primary text-slate-950 rounded-xl flex items-center justify-center hover:shadow-[0_0_20px_var(--primary-glow)] hover:scale-105 transition-all flex-shrink-0"><i data-lucide="send" class="w-4 h-4"></i></button>
             </div>
         </div>
-     </section>
+        <button class="w-16 h-16 bg-primary text-slate-950 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(45,212,191,0.35)] hover:scale-110 active:scale-95 transition-all" id="dex-toggle">
+            <i data-lucide="message-square" class="chat-i"></i>
+        </button>
+    </div>
 
-     <!-- Skills / Contact Section Condensed -->
-     <section id="contact" class="py-20 px-6 reveal-section">
-        <div class="max-w-3xl mx-auto glass p-12 text-center">
-            <h4 class="text-3xl font-black mb-6 italic">Let's build something <span class="text-primary italic">exceptional</span> together.</h4>
-            <div class="flex flex-wrap justify-center gap-4 mt-8">
-                <a href="mailto:contact@kathiravan.com" class="px-10 py-5 bg-white text-black font-bold rounded-2xl glow-btn">Start a Project</a>
-                <a href="#" class="px-10 py-5 glass border border-white/10 font-bold rounded-2xl hover:bg-white/5 transition-all">Download CV</a>
-            </div>
-            <div class="flex justify-center gap-8 mt-12 text-gray-400">
-                <a href="#" class="hover:text-primary transition"><i data-lucide="github"></i></a>
-                <a href="#" class="hover:text-primary transition"><i data-lucide="linkedin"></i></a>
-                <a href="#" class="hover:text-primary transition"><i data-lucide="twitter"></i></a>
-            </div>
-        </div>
-     </section>
-
-     <footer class="py-8 text-center text-gray-500 text-xs uppercase tracking-widest font-mono">
-        &copy; 2024 Kathiravan Devendiran. Built with Pure Magic & JS.
-     </footer>
-
-    <script src="assets/script.js"></script>
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/dex.js"></script>
     <script>
-        lucide.createIcons();
+        const roles = ['AI Enthusiast', 'Vibe Coder', 'Full-Stack Dev', 'Open Source Builder', 'UI Craftsman', 'Problem Solver'];
+        let ri = 0, ci = 0, deleting = false;
+        const el = document.querySelector('.typing-roles');
+        function type() {
+            if (!el) return;
+            const word = roles[ri];
+            el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+            if (!deleting && ci > word.length) { deleting = true; setTimeout(type, 1400); return; }
+            if (deleting && ci < 0) { deleting = false; ri = (ri + 1) % roles.length; ci = 0; }
+            setTimeout(type, deleting ? 55 : 100);
+        }
+        type();
     </script>
 </body>
 </html>
